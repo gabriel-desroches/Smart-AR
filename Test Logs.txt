@@ -1,0 +1,180 @@
+To test the logs, simply copy paste each one into main and run.
+
+note that the all keys method when using the benchmark files will "break" the console. 
+
+Log 1: invalid key length
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(13);
+
+
+
+Log 2: invalid threshold
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(5);
+
+
+Log 3: generating and printing keys
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(100);
+AR.generate(10);
+AR.setKeyLength(12);
+AR.generate(10);
+
+
+Log 4: Adding values and printing all keys
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(100);
+AR.add("123ABC", "car 1");
+AR.add("ABC123", "car 1");
+AR.add("A1B2C3", "car 1");
+AR.add("1A2B3C", "car 1");
+System.out.println(AR.allKeys());
+
+
+Log 5: Transferring to and from a tree
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+		AR.setKeyLength(8);
+		AR.setThreshold(100);
+		for (int i =0; i<100; i++) {
+			AR.add("License"+i, "car");
+		}
+		System.out.println(AR.allKeys());
+		AR.add("IntoTree", "car");
+		System.out.println(AR.allKeys());
+		AR.remove("IntoTree");
+		System.out.println(AR.allKeys());
+		System.exit(0);
+
+
+Log 6: Adding duplicates. Printing values and previousCars
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(100);
+AR.add("123ABC", "car 1");
+AR.add("123ABC", "car 2");
+AR.add("123ABC", "car 3");
+System.out.println(AR.getValues("123ABC"));
+System.out.println(AR.previousCars("123ABC"));
+System.out.println(AR.allKeys());
+
+
+Log 7: invalid file
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(1000);
+try {
+			Scanner scanner = new Scanner(new FileInputStream("ar_test_file4.txt"));
+			int i = 0; 
+			while(scanner.hasNext()) {
+				i++;
+				String next = scanner.next();
+				System.out.println(next+"    "+i);
+				AR.add(next, "Initial Car");
+			}
+			scanner.close();
+		} catch (FileNotFoundException e)  { 
+			System.out.println("Invalid file");
+		}
+
+
+Log 8: large threshold: demonstration of speed difference
+ when transferring to tree
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(1000);
+try {
+			Scanner scanner = new Scanner(new FileInputStream("ar_test_file2.txt"));
+			int i = 0; 
+			while(scanner.hasNext()) {
+				i++;
+				String next = scanner.next();
+				System.out.println(next+"    "+i);
+				AR.add(next, "Initial Car");
+			}
+			scanner.close();
+		} catch (FileNotFoundException e)  { 
+			System.out.println("Invalid file");
+		}
+
+
+Log 9: Changing threshold on an active SmartAR. Forcing transfers
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+AR.setKeyLength(8);
+AR.setThreshold(300);
+for (int i =0; i<200; i++) {
+			AR.add("License"+i, "car");
+		}
+
+//transfer to tree
+AR.setThreshold(100);
+System.out.println(AR.allKeys());
+
+//transfer back to sequence	
+AR.setThreshold(300);
+System.out.println(AR.allKeys());
+	
+		
+
+Log 10: large file and removal.
+----------------------------------------------------------
+SmartAR<String, String> AR = new SmartAR<String, String>();
+		AR.setKeyLength(8);
+		AR.setThreshold(100);
+
+		try {
+					Scanner scanner = new Scanner(new FileInputStream("ar_test_file1.txt"));
+					int i = 0; 
+					while(scanner.hasNext()) {
+						i++;
+						String next = scanner.next();
+						System.out.println(next+"    "+i);
+						AR.add(next, "Initial Car");
+					}
+					System.out.println(AR.allKeys());
+					scanner.close();
+				} catch (FileNotFoundException e)  { 
+					System.out.println("Invalid file");
+				}
+		
+		System.out.println(AR.nextKey("00471I5"));
+		System.out.println(AR.prevKey("00471I5"));
+		AR.remove("00471I5");
+		System.out.println(AR.nextKey("000SAYU8A2O"));
+		System.out.println(AR.prevKey("000SAYU8A2O"));
+		System.out.println(AR.prevKey("00CNXDXG25R"));
+
+		//remove bottom comment to visually show key has been removed
+	//	System.out.println(AR.allKeys());
+
+
+Code to run for benchmark files. Change 1 to 2 or 3.
+----------------------------------------------------------
+		try {
+			Scanner scanner = new Scanner(new FileInputStream("ar_test_file1.txt"));
+			int i = 0; 
+			while(scanner.hasNext()) {
+				i++;
+				String next = scanner.next();
+				System.out.println(next+"    "+i);
+				AR.add(next, "Initial Car");
+			}
+			scanner.close();
+		} catch (FileNotFoundException e)  { 
+			System.out.println("Invalid file");
+		}
+
+
+
+
