@@ -1,3 +1,51 @@
+/*
+ * 
+ * Written by Gabriel Desroches and Briana Toia
+ * Submitted for COMP 352 Data Structures + Algorithms
+ * 
+ * This "smart" AR is essentially a method of storing and retrieving fictional license plates
+ * and the associated cars. It uses two different ADTs to store the data depending on how many are 
+ * currently stores and a user set threshold.
+ * 
+ * When under the threshold, plates are stored in a linked list. 
+ * When over the threshold, plates are stored in an AVL tree. 
+ * 
+ * When crossing over or under the threshold, all the data is transferred to the appropriate 
+ * data type and the other is deleted. Threshold can be changed on an established AR, and transfers will occur 
+ * automatically if needed.
+ * 
+ * Plates are stored as nodes with key value pair, where the license plates themselves are the key and the 
+ * value is an arrayList containing all the information regarding the cars that have had or currently had that plate.
+ * Duplicate plate values indicate a new car is registered with that plate. The new car's data is added onto
+ * the arrayList.
+ */
+
+/*
+ * example of code to run to test: 
+ * large threshold: demonstration of speed difference when transferring to tree
+----------------------------------------------------------
+	SmartAR<String, String> AR = new SmartAR<String, String>();
+	AR.setKeyLength(8);
+	AR.setThreshold(1000);
+	try {
+				Scanner scanner = new Scanner(new FileInputStream("ar_test_file2.txt"));
+				int i = 0; 
+				while(scanner.hasNext()) {
+					i++;
+					String next = scanner.next();
+					System.out.println(next+"    "+i);
+					AR.add(next, "Initial Car");
+				}
+				scanner.close();
+			} catch (FileNotFoundException e)  { 
+				System.out.println("Invalid file");
+			}
+
+ */
+
+
+//The smart AR acts as the controller, it chooses whether to use the linkedList's methods or the Tree's.
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;

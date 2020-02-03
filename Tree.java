@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Tree<T1, T2> {
 
-	//parts of the code were heavily adapted from information 
+	//parts of the code were adapted from information 
 	//provided by Mayank Jaiswal on https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 	public class Node{
 		int height;
