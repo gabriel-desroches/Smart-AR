@@ -14,7 +14,7 @@ data type and the other is deleted. Threshold can be changed on an established A
 automatically if needed.
   
 Plates are stored as nodes with key value pair, where the license plates themselves are the key and the 
-value is an arrayList containing all the information regarding the cars that have had or currently had that plate.
+value is an arrayList containing all the information regarding the cars that have had or currently have that plate.
 Duplicate plate values indicate a new car is registered with that plate. The new car's data is added onto
 the arrayList.
 
