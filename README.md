@@ -1,5 +1,5 @@
 # Smart-AR
-Written by Gabriel Desroches and Briana Toia
+Written by Gabriel Desroches and Briana Toia  
 Submitted for COMP 352 Data Structures + Algorithms
  
 This "smart" AR is essentially a method of storing and retrieving fictional license plates
@@ -16,7 +16,7 @@ automatically if needed.
 Plates are stored as nodes with key value pair, where the license plates themselves are the key and the 
 value is an arrayList containing all the information regarding the cars that have had or currently have that plate.
 Duplicate plate values indicate a new car is registered with that plate. The new car's data is added onto
-the arrayList.
+the existing arrayList instead of creating a new node.
 
 The test files are composed of 10k, 100k, or one million pre-generated plates for testing.
 The Test Logs are 10 examples of different inputs that test fail-safes and various features.
