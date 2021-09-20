@@ -63,7 +63,7 @@ public class SmartAR <T1, T2>
 		
 		SmartAR<String, String> AR = new SmartAR<String, String>();
 		AR.setKeyLength(8);
-		AR.setThreshold(100);
+		AR.setThreshold(700);
 
 		try {
 					Scanner scanner = new Scanner(new FileInputStream("ar_test_file1.txt"));
